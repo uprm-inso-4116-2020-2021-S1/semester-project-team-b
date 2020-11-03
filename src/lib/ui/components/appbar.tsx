@@ -22,19 +22,16 @@ export default function NavBar() {
 
     return(
         <AppBar position='relative' style={{ zIndex:10, background: 'transparent', boxShadow: 'none', color:'transparent', padding:5, paddingTop:10}}>
-            <Grid 
-                container
-                direction='row'
-                justify="space-between"
-                wrap="nowrap"
-            >
-                <Grid item className={classes.iconContainer}>
+            <Grid container direction='row' wrap="nowrap" justify="space-between">
+
+                <Grid item justify='flex-start' className={classes.iconContainer}>
                     <Link href="/">
                         <Button>
                             <PanoramaFishEyeIcon fontSize="large"/>
                         </Button>
                     </Link>
                 </Grid>
+
                 <Grid item className={classes.search}>
                     <Box className={classes.searchIcon}>
                         <SearchIcon color='primary'/>
@@ -49,8 +46,9 @@ export default function NavBar() {
                     }}
                     />  
                 </Grid>
-                <Grid item >
-                    <Grid container justify="flex-end">
+
+                <Grid item justify="flex-end" className={classes.accountContainer}>
+                    <Grid container>
                     {!user?
                         <ButtonGroup variant="text">
                             <Button className={classes.buttons}>
@@ -68,7 +66,8 @@ export default function NavBar() {
                                 </Link> 
                             </Button>
                         </ButtonGroup>   
-                    :   <Button className={classes.buttons} onClick={handleUserMenu}>
+                    :   
+                        <Button className={classes.buttons} onClick={handleUserMenu}>
                             <Typography variant="h6" noWrap>
                                 {user?.email}
                             </Typography>
@@ -82,9 +81,10 @@ export default function NavBar() {
                                 <MenuItem onClick={handleUserMenuClose}>Profile</MenuItem>
                             </Link>
                                 <MenuItem onClick={() => {handleUserMenuClose();}}>Log Out</MenuItem>
-                            </Menu>
+                        </Menu>
                     </Grid>
                 </Grid>
+
             </Grid>
         </AppBar>
     )
@@ -102,11 +102,9 @@ const useStyles = makeStyles((theme: Theme) =>
             '&:hover': {
                 backgroundColor: fade(theme.palette.common.white, 0.40),
             },
-            // marginRight: theme.spacing(2),
-            // margin:'auto',
             width: '100%',
+            marginLeft: '6%',
             [theme.breakpoints.up('sm')]: {
-                marginLeft: 120,
                 width: 450,
             },
         },
@@ -135,6 +133,9 @@ const useStyles = makeStyles((theme: Theme) =>
         buttons: {
             color: theme.palette.primary.contrastText,
             wrap: 'noWrap'
+        },
+        accountContainer: {
+
         }
     }),
 );
