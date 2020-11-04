@@ -17,13 +17,11 @@ export interface IStudentWithPasswordSimple extends IStudent {
 }
 
 export interface IUniversity {
-    id: number | undefined,
     name: string,
     location: string
 } 
 
 export interface IStudyProgram {
-    id: number | undefined,
     name: string 
 }
 
