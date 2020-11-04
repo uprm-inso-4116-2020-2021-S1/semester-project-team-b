@@ -3,6 +3,8 @@ import Link from 'next/link'
 import React from 'react'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import GradeIcon from '@material-ui/icons/Grade';
+import TopReview from '../../lib/ui/components/topReview';
+import TopCompany from '../../lib/ui/components/topCompany';
 
 export default function Home() {
     const classes = useStyles();
@@ -42,58 +44,20 @@ export default function Home() {
                         
                         <Grid container direction='column' alignItems="center" wrap="nowrap" className={classes.cardContent}>
 
-                            <Grid item>
+                            <Grid item className={classes.cardTitle}>
                                 <Typography variant='h4'>
                                     Most Helpful Reviews
                                 </Typography>
                             </Grid>
 
                             <Grid item className={classes.cardItem}>
-                                <Grid container direction='row' justify='space-between' alignItems='center'>
-                                    <Link href="/reviews/">
-                                        <Button className={classes.buttonReview}>
-                                        
-                                            <Grid item className={classes.accountIconItem} xs={1}>
-                                                <AccountCircleIcon className={classes.accountIcon} />
-                                            </Grid>
+                                {/* v Top Reviews Here v */}
 
-                                            <Grid item className={classes.cardSub} zeroMinWidth xs={10}>
-                                                <Button disabled className={classes.buttonReview}>
-                                                        {/* <FormControl className={classes.reviewSummary}>
-                                                            <TextField
-                                                                variant='outlined'
-                                                                value={'Lorem ipsum dolor sit amet, consectetur adipiscing elit . . . Nunc ornare interdum elementum. Suspendisse imperdiet ligula . . . '}
-                                                                disabled={true}
-                                                                multiline={true}
-                                                                rows={2}
-                                                                InputProps={{
-                                                                    classes: {
-                                                                        root: classes.inputRoot,
-                                                                        disabled: classes.disabled,
-                                                                    }   
-                                                                }}
-                                                            />
-                                                        </FormControl> */}
-                                                        <Card variant='outlined' className={classes.reviewSummary}>
-                                                            <Typography className={classes.reviewText}>Sample Text</Typography>
-                                                        </Card>
-                                                </Button>
-                                            </Grid>
+                                <TopReview/>
+                                <TopReview/>
+                                <TopReview/>
 
-                                            <Grid item xs={1}>
-                                                <Grid container direction='row' alignItems="center" wrap="nowrap" className={classes.rating}>
-                                                    <Grid item>
-                                                        <GradeIcon fontSize="large"/>
-                                                    </Grid>
-                                                    <Grid item>
-                                                        <Typography className={classes.ratingText}>5/5</Typography>
-                                                    </Grid>
-                                                </Grid>
-                                            </Grid>
-
-                                        </Button>
-                                    </Link>
-                                </Grid>
+                                {/* ^ Top Reviews Here ^ */}
                             </Grid>
 
                         </Grid>
@@ -102,6 +66,11 @@ export default function Home() {
                         <Link href="/profile/">
                             <Button>
                             user profile
+                            </Button>
+                        </Link>
+                        <Link href="/companies/">
+                            <Button>
+                            company profile
                             </Button>
                         </Link>
 
@@ -120,45 +89,22 @@ export default function Home() {
                         wrap="nowrap"
                         className={classes.cardContent}
                         >
-                            <Grid item>
+                            <Grid item className={classes.cardTitle}>
                                 <Typography variant='h4'>
                                     Top Rated Companies
                                 </Typography>
                             </Grid>
+
                             <Grid item className={classes.cardItem}>
-                                <ButtonGroup variant="text" fullWidth={true}>
-                                    <Grid item className={classes.accountIcon}>
-                                        <Button>
-                                            <AccountCircleIcon fontSize="large"/>
-                                        </Button>
-                                    </Grid>
-                                    <Grid item xs={9} className={classes.cardSub}>
-                                        <Button>
-                                            <Link href="/">
-                                                <Typography>
-                                                    Company X
-                                                </Typography>
-                                            </Link>
-                                        </Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Grid
-                                        container
-                                        direction='row'
-                                        alignItems="center"
-                                        wrap="nowrap"
-                                        className={classes.rating}
-                                        >
-                                            <Grid item>
-                                                <GradeIcon fontSize="large"/>
-                                            </Grid>
-                                            <Grid item>
-                                                <Typography className={classes.ratingText}>5/5</Typography>
-                                            </Grid>
-                                        </Grid>
-                                    </Grid>
-                                </ButtonGroup>
+                                {/* v Top Companies Here v */}
+
+                                <TopCompany/>
+                                <TopCompany/>
+                                <TopCompany/>
+
+                                {/* ^ Top Companies Here ^ */}
                             </Grid>
+
                         </Grid>
                     </Card>
                 </Grid>
@@ -189,24 +135,14 @@ const useStyles = makeStyles((theme: Theme) =>
             padding: theme.spacing(4),
             width: '100%',  
         },
+        cardTitle: {
+            paddingBottom: theme.spacing(3)
+        },
         cardItem: {
-            marginTop: 30,
             width: '100%',
+            paddingBottom: theme.spacing(1)
         },
-        cardSub: {
-            // width: '80%',
-        },
-        buttonReview: {
-            width: '100%' 
-        },
-        reviewSummary: {
-            width: '90%',
-            backgroundColor: theme.palette.info.main,
-            height: 75,
-        },
-        reviewText: {
-            color: theme.palette.secondary.contrastText,
-        },
+
         inputRoot: {
             "&$disabled": {
               color: theme.palette.secondary.contrastText
@@ -214,14 +150,6 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         disabled: {
 
-        },
-        accountIconItem: {
-            height: '100%',
-            paddingLeft: theme.spacing(1),
-            paddingRight: theme.spacing(1),
-        },
-        accountIcon: {
-            fontSize: 50
         },
         title: {
             color: theme.palette.primary.contrastText,
@@ -233,15 +161,5 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         buttonSearch: {
             paddingTop: theme.spacing(1)
-        },
-        rating: {
-            height: '100%',
-            alignItems: 'center',
-            justifyContent: 'center',
-            paddingRight: theme.spacing(3)
-        },
-        ratingText: {
-            fontSize: 20,
-            paddingLeft: theme.spacing(1)
         },
     }))

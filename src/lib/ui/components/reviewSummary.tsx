@@ -1,4 +1,4 @@
-import { Card, createStyles, Grid, makeStyles, Theme, Typography } from "@material-ui/core";
+import { Box, Card, createStyles, Grid, makeStyles, Theme, Typography } from "@material-ui/core";
 import { Grade } from "@material-ui/icons";
 import React from "react";
 
@@ -30,7 +30,9 @@ export default function ReviewSummary() {
                         <Typography className={classes.reviewDate}>Posted on: Date</Typography>
                     </Grid>
                     <Grid container direction='row' alignItems="center" wrap="nowrap" zeroMinWidth>
-                        <Typography noWrap className={classes.reviewSummary}>Review Summary</Typography>
+                        {/* <Box className={classes.reviewSummaryBox}> */}
+                            <Typography className={classes.reviewSummaryText}>Review Summary (limit characters i.e. 150)</Typography>
+                        {/* </Box> */}
                     </Grid>
 
                 </Grid>
@@ -68,7 +70,11 @@ const useStyles = makeStyles((theme: Theme) =>
             color: theme.palette.primary.contrastText,
             fontSize: 15,
         },
-        reviewSummary: {
+        reviewSummaryBox: {
+            // height: 65,
+            width: '100%',
+        },
+        reviewSummaryText: {
             color: theme.palette.primary.contrastText,
             fontSize: 22,
         },

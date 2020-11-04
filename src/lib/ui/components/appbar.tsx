@@ -19,11 +19,11 @@ export default function NavBar() {
     const open = Boolean(anchorEl);
 
     // Functions
-    const handleUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
     
-    const handleUserMenuClose = () => {
+    const handleMenuClose = () => {
         setAnchorEl(null);
     };
 
@@ -59,40 +59,45 @@ export default function NavBar() {
                     />  
                 </Grid>
 
-                <Grid item justify="flex-end" className={classes.accountContainer}>
-                    <Grid container>
+                <Grid item justify="flex-end">
+                    <Grid container wrap='nowrap' className={classes.accountContainer}>
                     {!user?
-                        <ButtonGroup variant="text">
-                            <Button className={classes.buttons}>
-                                <Link href="/login">        
-                                    <Typography variant="h6" noWrap>
-                                        Log in
-                                    </Typography>
-                                </Link>
+                        <Grid item>
+                            <ButtonGroup variant="text">
+                                <Button className={classes.buttons}>
+                                    <Link href="/login">        
+                                        <Typography variant="h6" noWrap>
+                                            Log in
+                                        </Typography>
+                                    </Link>
+                                </Button>
+                                <Button className={classes.buttons}>
+                                    <Link href="/register">            
+                                        <Typography variant="h6" noWrap>
+                                            Register
+                                        </Typography>
+                                    </Link> 
+                                </Button>
+                            </ButtonGroup>
+                        </Grid>  
+                        :   
+                        <Grid item>
+                            <Button className={classes.buttons} onClick={handleMenuOpen}>
+                                <Typography variant="h6" noWrap className={classes.accountEmail}>
+                                    {user?.email}
+                                </Typography>
                             </Button>
-                            <Button className={classes.buttons}>
-                                <Link href="/register">            
-                                    <Typography variant="h6" noWrap>
-                                        Register
-                                    </Typography>
-                                </Link> 
-                            </Button>
-                        </ButtonGroup>   
-                    :   
-                        <Button className={classes.buttons} onClick={handleUserMenu}>
-                            <Typography variant="h6" noWrap>
-                                {user?.email}
-                            </Typography>
-                        </Button>}
+                        </Grid>
+                        }
                         <Menu
                         anchorEl={anchorEl}
                         open={open}
-                        onClose={handleUserMenuClose}
+                        onClose={handleMenuClose}
                         >
                             <Link href="/profile/">
-                                <MenuItem onClick={handleUserMenuClose}>Profile</MenuItem>
+                                <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
                             </Link>
-                            <MenuItem onClick={() => {handleUserMenuClose();logout()}}>Log Out</MenuItem>
+                            <MenuItem onClick={() => {handleMenuClose();logout()}}>Log Out</MenuItem>
                         </Menu>
                     </Grid>
                 </Grid>
@@ -115,7 +120,7 @@ const useStyles = makeStyles((theme: Theme) =>
                 backgroundColor: fade(theme.palette.common.white, 0.40),
             },
             width: '100%',
-            marginLeft: '6%',
+            marginLeft: '6.5%',
             [theme.breakpoints.up('sm')]: {
                 width: 450,
             },
@@ -147,7 +152,11 @@ const useStyles = makeStyles((theme: Theme) =>
             wrap: 'noWrap'
         },
         accountContainer: {
-
-        }
+            width: 190,
+        },
+        accountEmail: {
+            width: 185,
+            paddingRight: theme.spacing(1),
+        },
     }),
 );
