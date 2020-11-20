@@ -66,6 +66,7 @@ PRIMARY KEY ("id")
 CREATE TABLE  "public"."EmailKey" (
 "id" SERIAL ,
 "key" text NOT NULL ,
+"studentEmail" text NOT NULl ,
 PRIMARY key ("id")
 );
 
@@ -104,3 +105,5 @@ ALTER TABLE "public"."Review" ADD FOREIGN KEY ("authorId")REFERENCES "public"."S
 ALTER TABLE "public"."Rating" ADD FOREIGN KEY ("reviewId")REFERENCES "public"."Review"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE "public"."Rating" ADD FOREIGN KEY ("studentId")REFERENCES "public"."Student"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE "public"."EmailKey" ADD FOREIGN KEY ("studentEmail")REFERENCES "public"."Student"("email") ON DELETE CASCADE ON UPDATE RESTRICT;
