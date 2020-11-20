@@ -63,6 +63,12 @@ CREATE TABLE "public"."Review" (
 PRIMARY KEY ("id")
 );
 
+CREATE TABLE  "public"."EmailKey" (
+"id" SERIAL ,
+"key" text NOT NULL ,
+PRIMARY key ("id")
+);
+
 CREATE TABLE "public"."Rating" (
 "id" SERIAL,
 "helpfulRate" integer   NOT NULL ,
